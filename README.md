@@ -62,6 +62,20 @@ For any Rust question (compile error, design, crate choice, performance,
 unsafe) invoke the `rust-router` skill first and follow its routing.
 ```
 
+## Windows notes
+
+Everything in this pack is Markdown plus one optional Python script, so nothing needs compiling or installing.
+
+- Claude Code on Windows runs shell snippets through Git Bash, which it already requires. The one inline command in `m11-ecosystem` (it prints your `Cargo.toml` dependencies when the skill loads) works there unchanged.
+- Validator: run `python scripts\validate.py` from PowerShell or cmd. The `.sh` wrapper is only for bash.
+- Copying skills by hand in PowerShell:
+
+  ```powershell
+  Copy-Item -Recurse skills\* "$env:USERPROFILE\.claude\skills\"
+  ```
+
+- Profiling advice in `m10-performance` lists which tools are Linux-only (heaptrack, valgrind) and which work on Windows (`cargo flamegraph`, samply, Tracy, Superluminal, dhat-rs).
+
 ## Skills
 
 | Skill | Core question |
@@ -99,7 +113,8 @@ Copy `skills/domain-cli` to `skills/domain-<name>`, keep the section layout (con
 ## Validation
 
 ```bash
-scripts/validate.sh
+scripts/validate.sh            # bash
+python scripts/validate.py     # any OS
 ```
 
 Checks every `SKILL.md` has frontmatter whose `name` matches its directory, that every skill referenced in prose exists, that the plugin manifest and the `skills/` directory agree, and that no Chinese text slipped back in.

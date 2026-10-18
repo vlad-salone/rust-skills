@@ -4,20 +4,30 @@
 
 ### Tools
 ```bash
-# CPU profiling
+# CPU profiling (all platforms; Windows needs an elevated terminal)
 cargo install flamegraph
 cargo flamegraph --bin myapp
 
+# CPU profiling with an interactive UI (all platforms)
+cargo install samply
+samply record ./target/release/myapp      # Windows: .\target\release\myapp.exe
+
+# Frame-by-frame instrumented profiling for games (all platforms)
+# add tracy-client or puffin to the crate and open the Tracy / puffin viewer
+
 # Memory profiling
-cargo install cargo-instruments  # macOS
-heaptrack ./target/release/myapp  # Linux
+# all platforms: dhat-rs (in-process heap profiler, writes dhat-heap.json)
+cargo install cargo-instruments            # macOS only
+heaptrack ./target/release/myapp           # Linux only
 
 # Benchmarking
-cargo bench  # with criterion
+cargo bench  # with criterion or divan
 
-# Cache analysis
+# Cache analysis (Linux only)
 valgrind --tool=cachegrind ./target/release/myapp
 ```
+
+Always profile a `--release` build, and on Windows keep `debug = 1` in `[profile.release]` so the profiler can resolve symbols.
 
 ### Criterion Benchmarks
 ```rust

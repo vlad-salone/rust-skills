@@ -35,7 +35,7 @@ Before optimizing:
 Before optimizing:
 
 1. **Have you measured?**
-   - Profile first → flamegraph, perf
+   - Profile first → cargo flamegraph, samply, tracy (see tool table for your OS)
    - Benchmark → criterion, cargo bench
    - Identify actual hotspots
 
@@ -93,13 +93,16 @@ To implementation (Layer 1):
 
 ## Quick Reference
 
-| Tool | Purpose |
-|------|---------|
-| `cargo bench` | Micro-benchmarks |
-| `criterion` | Statistical benchmarks |
-| `perf` / `flamegraph` | CPU profiling |
-| `heaptrack` | Allocation tracking |
-| `valgrind` / `cachegrind` | Cache analysis |
+| Tool | Purpose | Platforms |
+|------|---------|-----------|
+| `cargo bench` + `criterion` or `divan` | Statistical micro-benchmarks | all |
+| `cargo flamegraph` | Sampling CPU profile → SVG | Linux (perf), macOS (dtrace), Windows (built-in blondie backend, run as admin) |
+| `tracy` (`tracy-client`) / `puffin` | Frame-aware instrumented profiling, live GUI | all; the default for games |
+| `samply` | Sampling profiler with Firefox Profiler UI | Linux, macOS, Windows |
+| Superluminal, Windows Performance Analyzer | Deep sampling + thread timelines | Windows |
+| `dhat-rs` | Heap allocation profiling from inside the program | all |
+| `heaptrack`, `valgrind --tool=cachegrind` | Allocation tracking, cache simulation | Linux only |
+| `cargo miri` | Undefined-behaviour detection (not a profiler) | all |
 
 ## Optimization Priority
 
