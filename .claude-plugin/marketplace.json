@@ -1,0 +1,17 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "rust-skills",
+  "version": "0.1.0",
+  "description": "Lean Rust skill pack for Claude Code: layered reasoning skills, CLI and game-dev domain constraints, coding guidelines, unsafe/FFI review rules.",
+  "owner": {
+    "name": "CHANGE_ME"
+  },
+  "plugins": [
+    {
+      "name": "rust-skills",
+      "description": "19 skills: m01-m15 reasoning layers, domain-cli, domain-gamedev, coding-guidelines, unsafe-checker",
+      "source": "./",
+      "category": "development"
+    }
+  ]
+}
