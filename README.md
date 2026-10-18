@@ -30,14 +30,14 @@ Fix: ...
 From a local clone:
 
 ```bash
-git clone <this repo> rust-skills
+git clone https://github.com/vlad-salone/rust-skills.git
 claude --plugin-dir /path/to/rust-skills
 ```
 
-Or add it as a marketplace and install once (edit `.claude-plugin/marketplace.json` owner first):
+Or add it as a marketplace and install once:
 
 ```
-/plugin marketplace add <github-user>/rust-skills
+/plugin marketplace add vlad-salone/rust-skills
 /plugin install rust-skills@rust-skills
 ```
 

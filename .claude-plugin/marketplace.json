@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Lean Rust skill pack for Claude Code: layered reasoning skills, CLI and game-dev domain constraints, coding guidelines, unsafe/FFI review rules.",
   "owner": {
-    "name": "CHANGE_ME"
+    "name": "Vladyslav Vladinov"
   },
   "plugins": [
     {
