@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1
+
+### Changed
+- `rust-router` and `m10-performance` descriptions name performance symptoms (fps drops, tick time, an optimization pass, slow builds) so they trigger on prompts that never say "Rust" or "performance".
+- `m10-performance`: new Build and Iteration Time section (`cargo build --timings`, dependency-only optimization, linkers, workspace splitting, Cranelift, sccache, hot reload), a frame/tick budget trace to `domain-gamedev`, and a "profile at small scale" mistake.
+- `rust-router`: routing rows for performance symptoms and for slow builds.
+
 ## 0.1.0
 
 Forked from [actionbook/rust-skills](https://github.com/actionbook/rust-skills) v2.0.9 and reduced to a skills-only pack.

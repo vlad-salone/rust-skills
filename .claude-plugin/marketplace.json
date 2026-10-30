@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "rust-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lean Rust skill pack for Claude Code: layered reasoning skills, CLI and game-dev domain constraints, coding guidelines, unsafe/FFI review rules.",
   "owner": {
     "name": "Vladyslav Vladinov"

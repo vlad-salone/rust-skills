@@ -1,6 +1,6 @@
 ---
 name: rust-router
-description: "Entry point for any Rust question. Use first for compile errors (E0xxx, borrow checker, lifetimes, Send/Sync), design questions, crate choice, performance, unsafe/FFI, CLI tools, and game development (Bevy, ECS, wgpu). Picks the right m01-m15, domain-*, coding-guidelines or unsafe-checker skill and traces the problem through domain, design and mechanics before answering."
+description: "Entry point for any Rust question, including ones asked inside a Cargo project that never say 'Rust'. Use first for compile errors (E0xxx, borrow checker, lifetimes, Send/Sync), design questions, crate choice, performance symptoms (slow, fps drops, tick time, an optimization pass, long builds), unsafe/FFI, CLI tools, and game development (Bevy, ECS, wgpu). Picks the right m01-m15, domain-*, coding-guidelines or unsafe-checker skill and traces the problem through domain, design and mechanics before answering."
 globs: ["**/Cargo.toml", "**/*.rs"]
 ---
 
@@ -37,7 +37,8 @@ A compile error is a Layer 1 symptom. The fix that lasts usually lives one layer
 | "How should I design / structure..." | Layer 2 | Check L3, then DOWN ↓ | m09-domain |
 | "Building a game / CLI..." | Layer 3 | Trace DOWN ↓ | domain-* |
 | "Best practice / idiomatic way..." | Layer 2 | Both directions | m15-anti-pattern |
-| Performance complaint | Layer 1 → 2 | UP then DOWN | m10-performance |
+| Performance complaint, fps drop, slow tick, "speed it up", optimization pass | Layer 1 → 2 | UP then DOWN | m10-performance |
+| Slow builds, long edit-run loop, hot reload | Layer 2 | Direct | m10-performance (Build and Iteration Time) |
 | Style, naming, clippy | — | Direct | coding-guidelines |
 | unsafe, FFI, raw pointers | Layer 1 | Direct, then UP | unsafe-checker |
 

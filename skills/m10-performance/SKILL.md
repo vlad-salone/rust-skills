@@ -1,6 +1,6 @@
 ---
 name: m10-performance
-description: "Use for performance optimization. Triggers: performance, optimization, benchmark, profiling, flamegraph, criterion, slow, fast, allocation, cache, SIMD, make it faster"
+description: "Use for runtime or build performance in Rust, including symptom reports that never say 'performance'. Triggers: performance, optimization pass, benchmark, profiling, flamegraph, criterion, slow, make it faster, speed up, fps drop, frame or tick time, simulation speed, scaling to many entities, allocation, cache, SIMD, compile times, slow builds, iteration speed, hot reload"
 ---
 
 # Performance Optimization
@@ -68,6 +68,7 @@ To domain constraints (Layer 3):
 | Latency requirements | domain-* | What's acceptable response time? |
 | Throughput needs | domain-* | How many requests per second? |
 | Memory constraints | domain-* | What's the memory budget? |
+| Frame or tick budget (games, simulations) | domain-gamedev | What's the budget per tick at the target speed and entity count? |
 
 ---
 
@@ -126,12 +127,29 @@ To implementation (Layer 1):
 
 ---
 
+## Build and Iteration Time
+
+Measure first: `cargo build --timings` writes an HTML report of per-crate compile time. Slow incremental rebuilds usually come from one large crate or from linking.
+
+| Lever | How | Trade-off |
+|-------|-----|-----------|
+| Optimize dependencies only | `[profile.dev.package."*"] opt-level = 3` | Fast runtime in dev; your own crates still rebuild quickly |
+| Faster linker | `rust-lld` (default on x86_64 Linux since Rust 1.90), `mold` on Linux, `linker = "rust-lld.exe"` for Windows MSVC in `.cargo/config.toml` | Linking often dominates incremental rebuilds |
+| Split the workspace | Move stable code into its own crates | Only changed crates recompile |
+| Less monomorphization | `dyn Trait` at cold boundaries (m04-zero-cost) | A little runtime for compile time |
+| Cranelift backend | Nightly `-Zcodegen-backend=cranelift` for dev builds | Faster debug codegen, slower output |
+| Shared cache | `sccache` | Helps clean builds and CI, not incremental |
+| Hot reload | `bevy/dynamic_linking`, `subsecond` hot-patching | Fast-moving APIs: check current docs with WebFetch before recommending |
+
+---
+
 ## Common Mistakes
 
 | Mistake | Why Wrong | Better |
 |---------|-----------|--------|
 | Optimize without profiling | Wrong target | Profile first |
 | Benchmark in debug mode | Meaningless | Always `--release` |
+| Profile at small scale | Scaling problems hide | Profile at the target entity count and speed |
 | Use LinkedList | Cache unfriendly | `Vec` or `VecDeque` |
 | Hidden `.clone()` | Unnecessary allocs | Use references |
 | Premature optimization | Wasted effort | Make it work first |
@@ -157,3 +175,5 @@ To implementation (Layer 1):
 | Concurrency options | m07-concurrency |
 | Smart pointer choice | m02-resource |
 | Domain requirements | domain-* |
+| Frame or tick budget | domain-gamedev |
+| Compile time from generics | m04-zero-cost |

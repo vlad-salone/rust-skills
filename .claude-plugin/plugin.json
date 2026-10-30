@@ -1,6 +1,6 @@
 {
   "name": "rust-skills",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Lean Rust skill pack: layered reasoning for ownership, mutability, traits, errors and concurrency, plus CLI and game-development domain constraints, coding guidelines and an unsafe/FFI review rule set.",
   "author": {
     "name": "Vladyslav Vladinov"
